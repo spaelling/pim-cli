@@ -18,7 +18,15 @@ var whoamiCmd = &cobra.Command{
 	Long: `Uses Microsoft Graph API to get the currently signed in user's profile.
 Usage: pim whoami`,
 	Run: func(cmd *cobra.Command, args []string) {
-		user, _ := util.Whoami()
-		fmt.Printf("%s\n", (*user).String())
+		// this is the user logged into az cli
+		user, error := util.AzWhoami()
+		if error != nil {
+			fmt.Printf("failed to get user: %v\n", error)
+			return
+		}
+		fmt.Printf("az cli context: %s (%s)\n", (*user).ID, (*user).DisplayName)
+		// this is the user logged into mgc cli
+		user, _ = util.MgcWhoami()
+		fmt.Printf("mgc cli context: %s (%s)\n", (*user).ID, (*user).DisplayName)
 	},
 }

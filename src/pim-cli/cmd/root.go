@@ -44,6 +44,7 @@ func init() {
 	rootCmd.AddCommand(listCmd)
 	rootCmd.AddCommand(accountCmd)
 	rootCmd.AddCommand(whoamiCmd)
+	rootCmd.AddCommand(activateCmd)
 }
 
 func initConfig() {

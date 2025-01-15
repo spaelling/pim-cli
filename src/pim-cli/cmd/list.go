@@ -15,6 +15,7 @@ func init() {
 
 	listAzureCmd.AddCommand(listAzureEligibleCmd)
 	listEntraCmd.AddCommand(listEntraEligibleCmd)
+	listEntraCmd.AddCommand(listEntraRolesCmd)
 }
 
 var listCmd = &cobra.Command{
@@ -63,10 +64,32 @@ var listAzureEligibleCmd = &cobra.Command{
 	Short: "List eligibility for azure resources",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		tenantId := util.GetTenantId()
-		accessToken := util.GetAccessToken(tenantId, util.AZ_MGMT_SCOPE)
+		tenantId, _ := util.GetTenantId()
+		accessToken, _ := util.GetAccessToken(tenantId, util.AZ_MGMT_SCOPE)
 		fmt.Printf("token: %s\n", accessToken)
 
+	},
+}
+
+var listEntraRolesCmd = &cobra.Command{
+	Use:   "roles",
+	Short: "List Entra ID roles",
+	Long: `List all active Entra ID roles
+	pim list entra roles
+`,
+	Run: func(cmd *cobra.Command, args []string) {
+		roleDefinitions, err := util.ListEntraIdRoleDefinitions()
+		if err != nil {
+			fmt.Printf("Error: %s\n", err)
+		}
+
+		// fmt.Printf("Found %d roles\n", len(*roleDefinitions))
+
+		fmt.Printf("%-45s %-45s\n", "Name", "ID")
+		for _, role := range *roleDefinitions {
+			// only care about the DisplayName and RoleTemplateID
+			fmt.Printf("%-45s %-45s\n", role.DisplayName, role.RoleTemplateID)
+		}
 	},
 }
 
@@ -85,7 +108,7 @@ var listEntraEligibleCmd = &cobra.Command{
 		for _, role := range *eligibleRoles {
 			roleDefinition, _ := util.GetRoleDefinitionByID(role.RoleDefinitionID)
 			// fmt.Printf("%s\n%s", roleDefinition.DisplayName, roleDefinition.Description)
-			fmt.Printf("%s\nPrincipal: %s\nRoleId: %s", roleDefinition.DisplayName, role.PrincipalID, role.RoleDefinitionID, roleDefinition.ID)
+			fmt.Printf("Role: %s\nPrincipal: %s\nRole definition Id: %s | %s", roleDefinition.DisplayName, role.PrincipalID, role.RoleDefinitionID, roleDefinition.ID)
 		}
 	},
 }

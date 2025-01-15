@@ -11,3 +11,5 @@ const AZ_RBAC_MSPIM = "https://api.azrbac.mspim.azure.com"
 const AZ_RBAC_MSPIM_BASE_PATH = "/api/v2/privilegedAccess/"
 
 const USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0"
+
+const DEFAULT_ROLE_ACTIVATION_DURATION = 240
