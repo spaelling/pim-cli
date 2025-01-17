@@ -35,8 +35,7 @@ jobs:
         with:
           # either 'goreleaser' (default) or 'goreleaser-pro'
           distribution: goreleaser
-          # GITHUB_REF_NAME is the name of the commit tag
-          version: ${{ env.GITHUB_REF_NAME }}
+          version: "v0.1"
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
