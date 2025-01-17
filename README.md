@@ -4,7 +4,8 @@ PIM CLI written in Golang, aiming to trivialize PIM role listing and activation,
 
 ## Requirements
 
-The PIM CLI piggybacks off of [Az CLI](https://learn.microsoft.com/en-us/cli/azure/) and the less wellknown [mgc CLI](https://learn.microsoft.com/en-us/graph/cli/installation?tabs=macos). Both are developed and supported by Microsoft. The reason that we use this is due to how authentication works.
+The PIM CLI utilizes [Az CLI](https://learn.microsoft.com/en-us/cli/azure/) and the less known [mgc CLI](https://learn.microsoft.com/en-us/graph/cli/installation?tabs=macos).
+Both are developed and supported by Microsoft. The reason that we use this is due to how authentication works.
 The Az CLI has commands to expose an authentication token but has a limited scope in Microsoft Graph.
 The Microsoft Graph CLI (mgc) does not expose a token (yet), but it is fairly convoluted and looks to be auto-generated based on the Graph REST APIs.
 
@@ -99,6 +100,10 @@ Activation start:       2025-01-17T19:59:30Z
 Expires after:          PT42M
 ```
 
+### pim account
+
+Commands to interact with the currently signed in user
+
 ## Planned Features
 
 ### Set activation
@@ -107,7 +112,7 @@ Activate multiple roles, both Entra ID, Azure, and even group memberships in one
 
 Example: Directory Reader and Reader (Azure) on the pseudo-root management group for 8 hours, Owner on Subscription X, Key Vault Administrator on specific Key Vault and Storage Blob Data Contributor on 3 different Storage Accounts for 4 hours, using different justifications.
 
-This could be the daily scenario for both working with some low privileged broad access and access for working on a specific project. Activating those roles in the Azure Portal would take 10 minutes or more, each day.
+This could be the daily driver for both working with some low privileged broad access and access for working on a specific project. Activating those roles in the Azure Portal would take 10 minutes or more, each day.
 
 ## TODO
 
