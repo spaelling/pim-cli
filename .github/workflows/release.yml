@@ -33,8 +33,8 @@ jobs:
         with:
           # either 'goreleaser' (default) or 'goreleaser-pro'
           distribution: goreleaser
-          # 'latest', 'nightly', or a semver
-          version: "{{ env.GITHUB_REF_NAME }}"
+          # GITHUB_REF_NAME is the name of the commit tag
+          version: ${{ env.GITHUB_REF_NAME }}
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
