@@ -16,6 +16,7 @@ func init() {
 	accountListCmd.AddCommand(accountListTenantsCmd)
 }
 
+// MARK: account
 var accountCmd = &cobra.Command{
 	Use:   "account",
 	Short: "",
@@ -23,10 +24,11 @@ var accountCmd = &cobra.Command{
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
+// MARK: account show
 var accountShowCmd = &cobra.Command{
 	Use:   "show",
-	Short: "",
-	Long:  ``,
+	Short: "pim account show",
+	Long:  `mirror of az account show`,
 	Run: func(cmd *cobra.Command, args []string) {
 		accounts, _ := util.AzAccount("show")
 		account := (*accounts)[0]
@@ -34,6 +36,7 @@ var accountShowCmd = &cobra.Command{
 	},
 }
 
+// MARK: account list
 var accountListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "",
@@ -45,6 +48,7 @@ var accountListCmd = &cobra.Command{
 	},
 }
 
+// MARK: account list users
 var accountListUsersCmd = &cobra.Command{
 	Use:   "users",
 	Short: "",
@@ -57,6 +61,7 @@ var accountListUsersCmd = &cobra.Command{
 	},
 }
 
+// MARK: account list tenants
 var accountListTenantsCmd = &cobra.Command{
 	Use:   "tenants",
 	Short: "",
