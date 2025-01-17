@@ -24,4 +24,7 @@ go.work.sum
 # env file
 .env
 src/test.ps1
+
+# stuff
 pim
+.DS_Store

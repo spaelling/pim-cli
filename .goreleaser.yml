@@ -1,0 +1,35 @@
+# https://goreleaser.com/customization/builds/go/
+builds:
+  - binary: pim
+    goos:
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -mod=vendor
+
+release:
+  prerelease: auto
+
+universal_binaries:
+  - replace: true
+
+# https://goreleaser.com/customization/homebrew/
+brews:
+  - name: pimcli
+    homepage: https://github.com/spaelling/pim-cli
+    commit_author:
+      name: spaelling
+      email: spaelling@gmail.com
+
+checksum:
+  name_template: 'checksums.txt'
+
+# https://goreleaser.com/customization/changelog/
+changelog:
+  sort: asc
+  use: github
