@@ -14,9 +14,11 @@ TODO
 
 ## Commands
 
-run `pim --help` for a list of command.
+run `pim --help` for a list of command. The help sections are mostly unfinished. My focus is on documenting the most useful commands.
 
 ### pim list
+
+Commands for listing different areas. This is in the context of the currently logged in user.
 
 #### pim list tenants
 
@@ -74,9 +76,32 @@ Role:   Attribute Assignment Administrator
 Id:     58a13ea3-c632-46ae-9ee0-9c0d43cd7f3d
 ```
 
-### Planned Features
+### pim activate
 
-#### Set activation
+Activate roles in Entra ID or Azure.
+
+#### pim activate az eligible
+
+`not implemented yet`
+
+#### pim activate entra eligible
+
+```cli
+pim activate entra eligible --role "58a13ea3-c632-46ae-9ee0-9c0d43cd7f3d" --justification "Enable admin role using pim cli" --duration 42 --validation true
+
+Role activation is validated!
+Action:                 selfActivate
+Principal Id:           65cfef21-f882-40a8-acc4-e00eeb156088
+RoleDefinition Id:      58a13ea3-c632-46ae-9ee0-9c0d43cd7f3d
+Is validation:          true
+Justification:          Enable admin role using pim cli
+Activation start:       2025-01-17T19:59:30Z
+Expires after:          PT42M
+```
+
+## Planned Features
+
+### Set activation
 
 Activate multiple roles, both Entra ID, Azure, and even group memberships in one command.
 
