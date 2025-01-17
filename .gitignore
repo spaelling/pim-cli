@@ -30,3 +30,7 @@ src/test.ps1
 # stuff
 pim
 .DS_Store
+
+# powershell testing scripts
+goreleaser.test.ps1
+test.ps1
