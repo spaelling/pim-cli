@@ -14,6 +14,7 @@ import (
 functions that utilize the mgc cli
 */
 
+// MARK: whoami
 func MgcWhoami() (*UserProfile, error) {
 	cmd := exec.Command("mgc", "users", "get", "--user-id", "me")
 	output, err := cmd.Output()
@@ -30,6 +31,7 @@ func MgcWhoami() (*UserProfile, error) {
 	return &user, nil
 }
 
+// MARK: GetRoleDefinitionByID
 func GetRoleDefinitionByID(roleDefinitionID string) (*DirectoryRole, error) {
 	roles, err := ListEntraIdRoleDefinitions()
 	if err != nil {
@@ -45,6 +47,7 @@ func GetRoleDefinitionByID(roleDefinitionID string) (*DirectoryRole, error) {
 	return nil, fmt.Errorf("role with RoleDefinitionID %s not found", roleDefinitionID)
 }
 
+// MARK: ListEntraIdRoleDefinitions
 func ListEntraIdRoleDefinitions() (*[]DirectoryRole, error) {
 	cmd := exec.Command("mgc", "directory-roles", "list")
 	output, err := cmd.Output()
@@ -61,6 +64,7 @@ func ListEntraIdRoleDefinitions() (*[]DirectoryRole, error) {
 	return &directoryRolesResponse.Roles, nil
 }
 
+// MARK: ListEntraIdEligibleRoles
 func ListEntraIdEligibleRoles() (*[]RoleEligibilityScheduleInstance, error) {
 	cmd := exec.Command("mgc", "role-management", "directory", "role-eligibility-schedule-instances", "filter-by-current-user-with-on", "get", "--on", "principal")
 	output, err := cmd.Output()
@@ -81,6 +85,7 @@ func ListEntraIdEligibleRoles() (*[]RoleEligibilityScheduleInstance, error) {
 	return &roleEligibilityResponse.RoleEligibilityScheduleInstances, nil
 }
 
+// MARK: roleActivationRequestDefaults
 var roleActivationRequestDefaults = RoleActivationRequest{
 	Action:           "selfActivate",
 	DirectoryScopeId: "/",
@@ -101,6 +106,7 @@ var roleActivationRequestDefaults = RoleActivationRequest{
 	},
 }
 
+// MARK: ActivateEntraIdEligibleRoles
 func ActivateEntraIdEligibleRoles(roleDefinitionId string, justification string, duration string, isValidation bool) (*RoleActivationRequest, error) {
 	roleActivationRequest := roleActivationRequestDefaults
 
