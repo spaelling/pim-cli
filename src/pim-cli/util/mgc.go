@@ -101,7 +101,7 @@ var roleActivationRequestDefaults = RoleActivationRequest{
 	},
 }
 
-func ActivateEntraIdEligibleRoles(roleDefinitionId string, justification string, duration string) (*RoleActivationRequest, error) {
+func ActivateEntraIdEligibleRoles(roleDefinitionId string, justification string, duration string, isValidation bool) (*RoleActivationRequest, error) {
 	roleActivationRequest := roleActivationRequestDefaults
 
 	// Get the current user
@@ -118,6 +118,7 @@ func ActivateEntraIdEligibleRoles(roleDefinitionId string, justification string,
 	roleActivationRequest.ScheduleInfo.StartDateTime = startDateTime
 	roleActivationRequest.Justification = justification
 	roleActivationRequest.ScheduleInfo.Expiration.Duration = duration
+	roleActivationRequest.IsValidationOnly = isValidation
 
 	// fmt.Print(roleActivationRequest.String())
 
