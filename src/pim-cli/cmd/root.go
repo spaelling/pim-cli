@@ -15,7 +15,7 @@ var (
 
 	rootCmd = &cobra.Command{
 		Use:   "pim",
-		Short: "A brief description of your application",
+		Short: "pim is a cli to assist with eleveating access in PIM",
 		Long:  `pim is a cli to assist with eleveating access in PIM`,
 	}
 )
