@@ -4,7 +4,7 @@ builds:
   - binary: pim
     goos:
       - darwin
-      # - linux
+      - linux
       - windows
     goarch:
       - amd64
